@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = [
-            'name' => [
-            'Jota Rodrigues',
-            'J Rodrigues']
-        ];
-        dd($users);
+        $users = User::all();
+
+        return view('users.index', compact('users'));
     }
 
     public function show($id)
     {
-        dd('Id do usuário é '. $id);
+        if(!$user = User::find($id))
+            return redirect()->route('users.index');
+
+        return view('users.show', compact('user'));
     }
 }

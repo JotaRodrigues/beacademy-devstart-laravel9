@@ -6,6 +6,10 @@ use App\Http\Controllers\{
     ViaCepController
 };
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 
