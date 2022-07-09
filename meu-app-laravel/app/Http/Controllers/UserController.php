@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUpdateUserFormRequest;
+use App\Models\Team;
 
 class UserController extends Controller
 {
@@ -17,12 +18,15 @@ class UserController extends Controller
     {
         $users = User::paginate(5);
 
+
         return view('users.index', compact('users'));
     }
 
     public function show($id)
     {
-        if(!$user = User::find($id))
+
+
+        if(!$user = User::findOrFail($id))
             return redirect()->route('users.index');
 
         return view('users.show', compact('user'));

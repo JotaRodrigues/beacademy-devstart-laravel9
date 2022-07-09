@@ -3,12 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     UserController,
-    ViaCepController
+    ViaCepController,
+    PostController
 };
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Rotas de posts
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/users/{id}/posts', [PostController::class, 'show'])->name('posts.show');
 
 // Rotas de usuários
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');

@@ -2,7 +2,7 @@
 @section('title', 'Listagem de Usuários')
 
 @section('body')
-    <h1 style="text-align: center; margin: 30px 0;">Listagem de Usuários</h1>
+    <h1 style="text-align: center; margin: 20px 0;">Listagem de Usuários</h1>
     <a href="{{ route('users.create') }}" class="btn btn-info mb-3">Novo Usuário</a>
 
     <table class="table">
@@ -12,6 +12,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
+                <th scope="col">Postagens</th>
                 <th scope="col">Data de Cadastro</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -28,6 +29,7 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td><a href="{{ route('posts.show', $user->id) }}" class="btn btn-outline-dark">Postagens - {{ $user->posts->count() }}</a></td>
                     <td>{{ date('d/m/Y - H:i', strtotime($user->created_at)) }}</td>
                     <td><a href="{{ route('users.show', $user->id) }}" class="btn btn-primary">Visualizar</a></td>
                 </tr>
